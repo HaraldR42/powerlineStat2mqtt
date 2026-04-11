@@ -1,7 +1,7 @@
 import logging
 import socket
 
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 __myname__ = "powerlineStat2mqtt"
 __myname_short__ = "plc2m"
 __min_version__ = (3,14)
