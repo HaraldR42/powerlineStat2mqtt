@@ -2,7 +2,7 @@ Daemon:
     interface:                'eth0'
     cycle-time:               30
 
-    mqtt-host:                'mqtt.roelle.home'
+    mqtt-host:                'mqtt.your.domain'
     mqtt-topic:               '/powerline/'
 
     add-to-homeassistant:     True

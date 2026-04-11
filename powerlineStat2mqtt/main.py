@@ -76,6 +76,7 @@ def main() -> None:
 
     miscGroup = parser.add_argument_group('Misc options', '')
     miscGroup.add_argument('--add-to-homeassistant', type=bool, help=f'Add devices to Home Assistant using Home Assistant\'s MQTT-Discovery. Default: "{deamon_opts["add-to-homeassistant"]}"')
+    miscGroup.add_argument('--hass-discovery-prefix', help=f'Topic prefix for Home Assistant\'s MQTT-Discovery. Default: "{deamon_opts["hass-discovery-prefix"]}"')
     miscGroup.add_argument('--verbosity', choices=['debug', 'info', 'warning', 'error', 'critical'], help=f'Verbosity level. Default: "{deamon_opts["verbosity"]}"')
 
     args = parser.parse_args()

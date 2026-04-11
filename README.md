@@ -43,7 +43,7 @@ To build the image:
 
 To run the image:
 
-`docker run -v $(pwd)/config/wago-352-530-430.yaml:/app/conf/modbus2mqtt_2.yaml --name powerlineStat2mqtt --hostname docker-plc2m -e TZ=Europe/Berlin powerlineStat2mqtt`
+`docker run -v $(pwd)/config/wago-352-530-430.yaml:/app/conf/modbus2mqtt_2.yaml --name powerlineStat2mqtt --hostname docker-plc2m -e TZ=Europe/Berlin --privileged --net host powerlineStat2mqtt`
 
 
 ## MQTT
@@ -69,4 +69,4 @@ As this value is handled by *powerlineStat2mqtt* alone, this value might be wron
 
 ## Home Assistant MQTT device discovery
 
-To enable fully automated discovery via MQTT in Home Assistant, just set `add-to-homeassistant` to true and set XXX
+To enable fully automated discovery via MQTT in Home Assistant, just set `add-to-homeassistant` to true and set `hass-discovery-prefix` to your Home Assistant\'s MQTT-Discovery prefix.
