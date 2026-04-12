@@ -8,8 +8,6 @@ RUN    apt update \
 RUN    apt install -y  openssh-server
 
 RUN    apt install -y \
-         bash \
-         vim \
          plc-utils \
          plc-utils-extra \
          mosquitto-clients \
@@ -25,11 +23,5 @@ WORKDIR /app
 
 COPY powerlineStat2mqtt.py ./
 COPY powerlineStat2mqtt powerlineStat2mqtt/
-
-# Force invalidating the cache before git clone
-ARG BUILD_DATE=-1
-RUN echo "$BUILD_DATE"
-
-RUN git clone --branch main https://github.com/HaraldR42/powerlineStat2mqtt.git .
 
 ENTRYPOINT [ "python3", "-u", "./powerlineStat2mqtt.py", "--config", "/app/conf/powerlineStat2mqtt.conf.yaml" ]
