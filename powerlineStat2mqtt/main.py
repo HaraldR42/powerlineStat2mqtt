@@ -17,7 +17,7 @@ import powerlineStat2mqtt.globals as globs
 
 from .config_reader import ConfigYaml
 from .globals import logger, deamon_opts
-from .powerline_objects import PowerlineStatus
+from .powerline_objects import create_powerline_status
 from .mqtt_client import MqttClient
 
 
@@ -29,7 +29,7 @@ def status_loop(mqttc:MqttClient) -> None:
     try:
         while True:
             old_plc_status = current_plc_status
-            current_plc_status = PowerlineStatus()
+            current_plc_status = create_powerline_status()
             if deamon_opts['add-to-homeassistant']:
                 current_plc_status.send_hass_autodiscovery(mqttc, old_plc_status)
                 time.sleep(2)
@@ -55,6 +55,7 @@ def main() -> None:
     parser.add_argument('--config', type=argparse.FileType('r'), help='Configuration file.')
 
     plcStatGroup = parser.add_argument_group( 'Powerline status check options', 'All options influencing the powerline status check and publish behaviour.')
+    plcStatGroup.add_argument('--powerline-tool', help=f'Backend(s) for talking to powerline devices: "open-plc-utils", "pla-util", or a comma-separated combination. Default: {deamon_opts["powerline-tool"]}')
     plcStatGroup.add_argument('--interface', type=int, help=f'Network interface to look for powerline devices. Default: {deamon_opts["interface"]}')
     plcStatGroup.add_argument('--cycle-time', type=str, help=f'Check and publish status every n seconds. Default: {deamon_opts["cycle-time"]}')
 

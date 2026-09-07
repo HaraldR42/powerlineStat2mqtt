@@ -1,0 +1,86 @@
+# pla-util --help                               
+pla-util 2.1.3
+A utility for power line adapters with Broadcom chipsets
+
+Usage:
+  pla-util [options] <command> [arguments]
+  pla-util -h | --help                      Display help and exit
+  pla-util -V | --version                   Display version and exit
+
+Options:
+  -i, --interface=<name>   Network interface to use (e.g., eth0)
+  -p, --pla=<mac-address>  Power line adapter at unicast MAC address
+  -t, --timeout=<ms>       Network timeout in milliseconds [default: 500]
+
+Commands:
+  check-dak <pla-passphrase>         Check device access key
+  check-nmk <passphrase>             Check network membership key
+  discover                           Discover power line adapters on subnet
+  get-capabilities                   Get capabilities
+  get-discover-list                  Get discovered PLAs and networks
+  get-hfid ( manufacturer | user )   Get human-friendly id [default: user]
+  get-id-info                        Get identification info
+  get-network-info ( any | member )  Get network information [default: member]
+  get-network-stats                  Get average PHY data rates
+  get-station-info                   Get power line adapter information
+  reset                              Factory reset power line adapter
+  restart                            Restart / reboot power line adapter
+  set-hfid <id>                      Set user human-friendly id
+  set-nmk <passphrase>               Set network membership key
+
+# pla-util discover
+6c:4c:bc:61:82:d6 via MII1 interface, HFID: tpver_071714_191011_901
+6c:4c:bc:61:82:cb via PLC interface, HFID: tpver_071714_191011_901
+
+# pla-util -p 6c:4c:bc:61:82:d6 get-capabilities 
+AV Version:             2.0
+MAC Address:            6c:4c:bc:61:82:d6
+OUI:                    001f84
+Backup CCo:             CAPABLE
+Proxy:                  NOT_CAPABLE
+Implementation Version: 1
+
+# pla-util -p 6c:4c:bc:61:82:d6 get-discover-list
+Number of stations: 1
+Station 1:
+  MAC Address:         6c:4c:bc:61:82:cb
+  TEI:                 9
+  Same Network:        YES
+  SNID:                0
+  CCo:                 NO
+  PCo:                 NO
+  Backup CCo:          NO
+  Signal Level:        -10 dB < SL <= 0 dB
+Number of Networks: 0
+
+# pla-util -p 6c:4c:bc:61:82:d6 get-hfid
+tpver_071714_191011_901
+
+# pla-util -p 6c:4c:bc:61:82:d6 get-id-info
+HomePlug AV Version: 2.0
+MCS:                 MIMO_NOT_SUPPORTED
+
+# pla-util -p 6c:4c:bc:61:82:d6 get-network-info
+Number of networks: 1
+Network 1:
+  NID:                             0340ff93935c80 (SL-SC)
+  SNID:                            0
+  TEI:                             8
+  CCo MAC Address:                 6c:4c:bc:61:82:d6
+  Backup CCo MAC Address:          00:00:00:00:00:00
+  Number of Coordinating Networks: 0
+  Station Role:                    CCO
+  Network Kind:                    IN_HOME_NETWORK
+  Status:                          JOINED
+
+# pla-util -p 6c:4c:bc:61:82:d6 get-network-stats
+Number of stations: 1
+Station 1:
+  Destination Address (DA):  6c:4c:bc:61:82:cb
+  Avg PHY Data Rate to DA:   118 Mbps
+  Avg PHY Data Rate from DA: 169 Mbps
+
+# pla-util -p 6c:4c:bc:61:82:d6 get-station-info 
+Chip Version:                    UNKNOWN
+Hardware Version:                0x80f00005
+

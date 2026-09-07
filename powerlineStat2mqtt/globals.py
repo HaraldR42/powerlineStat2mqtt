@@ -1,7 +1,7 @@
 import logging
 import socket
 
-__version__ = "2.0.1"
+__version__ = "3.0.0"
 __myname__ = "powerlineStat2mqtt"
 __myname_short__ = "plc2m"
 __min_version__ = (3,14)
@@ -25,6 +25,7 @@ deamon_opts = {
     'config':                   None,
 
     # Powerline status check options
+    'powerline-tool':           'open-plc-utils',   # Backend(s) for talking to powerline devices: 'open-plc-utils', 'pla-util', or a list / comma-separated combination of both.
     'interface':                'eth0',             # Network interface to look for powerline devices.
     'cycle-time':               60,                 # Check and publish status every n seconds.
 

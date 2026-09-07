@@ -1,4 +1,7 @@
 Daemon:
+    powerline-tool:
+        - open-plc-utils
+        - pla-util
     interface:                'eth0'
     cycle-time:               30
 

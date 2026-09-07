@@ -14,6 +14,7 @@ Requirements:
 - [pyyaml](https://pyyaml.org/)
 - [jsons](https://github.com/ramonhagenaars/jsons)
 - [open-plc-utils](https://github.com/qca/open-plc-utils)
+- [pla-util](https://github.com/serock/pla-util)
 
 ### Installation of requirements:
 1. Install python3 and python3-pip and open-plc-utils<br>
@@ -21,6 +22,10 @@ Requirements:
 1. run `pip3 install paho-mqtt`
 1. run `pip3 install pyyaml`
 1. run `pip3 install jsons`
+
+For pla-util go to https://github.com/serock/pla-util
+1. Download pre-build binary package
+1. Install accordingly
 
 ## Configuration and usage
 
